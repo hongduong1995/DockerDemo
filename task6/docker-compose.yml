@@ -5,9 +5,9 @@ services:
   container_name: mongodb
   image: mongo:latest
   volumes:
-    - ./mongodb:/data/db
+   - "mongodb:/data/db"
   networks:
-   - "nodejsmongo"
+   - nodejsmongo
  nodejs:
   container_name: nodejsapp
   image: hongduong1995/demo-service:dev
@@ -16,9 +16,14 @@ services:
   environment:
    MONGODB_URI: mongodb://mongodb:27017/demo
    PORT: 3000
+  restart: on-failure
+  depends_on:
+   - mongodb
   networks:
-   - "nodejsmongo"
+   - nodejsmongo
 networks:
  nodejsmongo:
   name: nodejsmongo
   driver: bridge
+volumes:
+ mongodb: {}

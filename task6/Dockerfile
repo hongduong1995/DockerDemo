@@ -1,11 +1,12 @@
+  
 FROM node:12-alpine
 
-COPY package.json .
-COPY package-lock.json .
+WORKDIR /app
+
+COPY ["package.json","package-lock.json","./"]
 
 RUN npm install
 
-COPY . .
+COPY  ./src .
 
-RUN npm build
-
+CMD ["node","app.js"] 
