@@ -2,15 +2,23 @@ version: '3.3'
 
 services:
  mongodb:
+  container_name: mongodb
   image: mongo:latest
   volumes:
-    - "./mongodb:/data/db"
+    - ./mongodb:/data/db
+  networks:
+   - "nodejsmongo"
  nodejs:
-  depends_on:
-  - mongodb
+  container_name: nodejsapp
   image: hongduong1995/demo-service:dev
   ports:
-  - "8000:3000"
+   - "8000:3000"
   environment:
    MONGODB_URI: mongodb://mongodb:27017/demo
    PORT: 3000
+  networks:
+   - "nodejsmongo"
+networks:
+ nodejsmongo:
+  name: nodejsmongo
+  driver: bridge
