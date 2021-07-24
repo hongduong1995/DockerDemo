@@ -1,6 +1,11 @@
 version: '3.3'
 
 services:
+ image:
+  build:
+   context: ./
+   dockerfile: Dockerfile
+   container_name: demo-service
  mongodb:
   container_name: mongodb
   image: mongo:latest
