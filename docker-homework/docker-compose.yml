@@ -10,6 +10,7 @@ services:
     - "bookapi"
    volumes:
    # Mount volume int.sql vào thư mục trong container
+   # Đối với version 3.3, khi mount file vào container cần có thêm ./ phía trước folder cần mount. còn đối với version 3 thì không cần tiền tố ./
     - "./config/db/init.sql:/docker-entrypoint-initdb.d/init.sql"
    # Mount thư mục data trong container ra ngoài host - Cụ thể là folder được tạo ngay trên thư mục project có tên là postgresql
     - "./postgresql:/var/lib/postgresql/data"
