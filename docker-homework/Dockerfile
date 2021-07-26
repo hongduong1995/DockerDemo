@@ -17,6 +17,5 @@ FROM alpine:latest
 COPY --from=golangapp /app/api .
 COPY config/app/.env .
 COPY config/app/app.conf .
- 
-RUN ["chmod", "+x", "./.env"] # Gan quyen cho file .env de thuc hien trong container
+
 CMD ./api

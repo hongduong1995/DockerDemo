@@ -2,27 +2,28 @@ version: '3.3'
 
 services:
   postgresql:
-   image: postgres:latest
    container_name: postgresql
-   networks:
-    - "bookapi"
+   image: postgres:latest
    env_file:
     - config/db/env
+   networks:
+    - "bookapi"
    volumes:
-    - /config/db/int.sql:/docker-entrypoint-initdb.d/
-    - ./postgresql:/var/lib/postgresql/data
-  bookapi:
+    - "./config/db/init.sql:/docker-entrypoint-initdb.d/init.sql"
+    - "./postgresql:/var/lib/postgresql/data"
+  book-service:
+   container_name: book-service
    build:
     context: ./
     dockerfile: Dockerfile
-   depends_on:
-    - "postgresql"
    env_file:
-    - config/db/env
-   networks:
-    - "bookapi"
+    - "config/app/.env"
+   depends_on: 
+    - postgresql
    ports:
     - "8000:8080"
+   networks:
+    - "bookapi"
 volumes: {}
 networks:
   bookapi:
