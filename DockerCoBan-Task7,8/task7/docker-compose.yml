@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+ postgresql:
+  container_name: postgresql
+  image: thuongnn1997/todo-app-db:latest
+  networks:
+   - "todoapp"
+  environment:
+   - "POSTGRES_USER=postgres"
+   - "POSTGRES_PASSWORD=root123"
+   - "POSGRES_DB=registry"
+  volumes:
+   - "my-vol:/var/lib/postgresql/data"
+ golang:
+  container_name: golang
+  image: thuongnn1997/todo-app:latest
+  networks:
+   - "todo-app"
+  ports:
+   - "8081:8080"
+volumes: {}
+networks:
+ todoapp:
+  name: todoapp
+  driver: bridge
