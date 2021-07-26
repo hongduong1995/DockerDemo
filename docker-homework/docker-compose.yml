@@ -1,4 +1,4 @@
-version: '3.3'
+﻿version: '3.3'
 
 services:
   postgresql:
@@ -9,7 +9,9 @@ services:
    networks:
     - "bookapi"
    volumes:
+   # Mount volume int.sql vào thư mục trong container
     - "./config/db/init.sql:/docker-entrypoint-initdb.d/init.sql"
+   # Mount thư mục data trong container ra ngoài host - Cụ thể là folder được tạo ngay trên thư mục project có tên là postgresql
     - "./postgresql:/var/lib/postgresql/data"
   book-service:
    container_name: book-service
