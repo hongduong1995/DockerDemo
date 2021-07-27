@@ -16,10 +16,11 @@ services:
   container_name: golang
   image: thuongnn1997/todo-app:latest
   networks:
-   - "todo-app"
+   - "todoapp"
   ports:
    - "8081:8080"
-volumes: {}
+volumes: 
+ my-vol: {}
 networks:
  todoapp:
   name: todoapp

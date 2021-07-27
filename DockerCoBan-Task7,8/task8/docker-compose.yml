@@ -9,7 +9,7 @@ services:
    environment:
     - "MYSQL_ROOT_PASSWORD=example"
    volumes:
-    - "ghost-vol:target=/var/lib/mysql"
+    - "ghost-vol:/var/lib/mysql"
   ghostblog:
    container_name: ghostblog
    image: ghost:alpine
@@ -23,7 +23,8 @@ services:
     - "database_connection_user=root"
     - "database_connection_password=example"
     - "database_connection_database=ghost"
-volumes: {}
+volumes: 
+ ghost-vol: {}
 networks:
   ghost-network:
    name: ghost-network
