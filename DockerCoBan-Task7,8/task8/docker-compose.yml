@@ -23,6 +23,9 @@ services:
     - "database_connection_user=root"
     - "database_connection_password=example"
     - "database_connection_database=ghost"
+   depends_on: 
+    - "db"
+   restart: on-failure
 volumes: 
  ghost-vol: {}
 networks:
