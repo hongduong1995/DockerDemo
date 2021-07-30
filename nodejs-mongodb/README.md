@@ -14,6 +14,7 @@ docker service create \
 mongo:latest
 
 2. Tạo service demo-service
+
 B1. Build Image từ Dockerfile, tạo image nodejs Demo
 docker build -t hongduong1995/nodejsdemo:demo1 .
 
